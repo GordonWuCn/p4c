@@ -229,7 +229,8 @@ bool BranchingInstructionGeneration::generate(const IR::Expression *expr,
                     instructions.push_back(new IR::DpdkJmpIfValidStatement(
                                 true_label, a->appliedTo)); }
                 return is_and;
-            } else {
+            } 
+            else {
                 BUG("%1%: Not implemented", expr);
             }
         } else {
@@ -380,7 +381,12 @@ bool ConvertStatementToDpdk::preorder(const IR::MethodCallStatement *s) {
             add_instr(new IR::DpdkVerifyStatement(condition->expression,
                                                   error->expression));
         }
+    } else if(auto a = mi->to<P4::BuiltInMethod>()) {
+        if(a->name == "setInvalid"){
+            add_instr(new IR::DpdkInvalidateStatement(a->appliedTo));
+        }
     } else {
+        std::cerr << s << std::endl;
         BUG("function not implemented.");
     }
     return false;

@@ -405,3 +405,9 @@ std::ostream &IR::DpdkRegisterWriteStatement::toSpec(std::ostream &out) const {
         << DPDK::toStr(src);
     return out;
 }
+
+
+std::ostream &IR::DpdkInvalidateStatement::toSpec(std::ostream &out) const {
+    out << "invalidate " << DPDK::toStr(header);
+    return out;
+}

@@ -150,6 +150,7 @@ control ingress(inout headers_t headers, inout local_metadata_t local_metadata1,
 
     apply {
         vxlan.apply();
+        headers.ipv4.setInvalid();
     }
 }
 

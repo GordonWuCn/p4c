@@ -126,6 +126,12 @@ class DpdkJmpIfValidStatement : DpdkJmpHeaderStatement {
         DpdkJmpHeaderStatement("jmpv", label, hdr) { }
 }
 
+class DpdkInvalidateStatement: DpdkAsmStatement{
+    Expression header;
+    std::ostream& toSpec(std::ostream& out) const override;
+#nodbprint
+}
+
 abstract DpdkJmpCondStatement : DpdkJmpStatement {
     Expression src1;
     Expression src2;
